@@ -7,7 +7,6 @@ struct Node {
 };
 
 int main() {
-    
     struct Node *start = (struct Node*)malloc(sizeof(struct Node));
     if (start == NULL) {
         printf("Memory allocation failed!\n");
