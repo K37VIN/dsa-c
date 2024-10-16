@@ -81,7 +81,7 @@ void deleteAtPosition(Node** head, int position) {
             temp = temp->next;
             count++;
         }
-        if (temp == NULL) {
+        if (temp  == NULL) {
             printf("Position out of bounds.\n");
         } else {
             if (temp->prev != NULL) {

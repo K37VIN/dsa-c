@@ -1,13 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// Define the structure for a linked list node
 struct Node {
     int data;
     struct Node* next;
 };
 
-// Function prototypes
 struct Node* createNode(int data);
 void insertEnd(struct Node** head, int data);
 void searchElement(struct Node* head, int element);
@@ -19,8 +17,6 @@ void freeList(struct Node* head);
 int main() {
     struct Node *head = NULL;
     int choice, data, element;
-
-    // Populate the linked list
     char ch;
     do {
         printf("Enter value to insert: ");
@@ -28,7 +24,7 @@ int main() {
         insertEnd(&head, data);
 
         printf("Do you want to store more data (Y/N): ");
-        scanf(" %c", &ch); // Note the space before %c to consume any leftover whitespace
+        scanf(" %c", &ch); 
     } while (ch == 'Y' || ch == 'y');
 
     while (1) {
@@ -86,7 +82,7 @@ int main() {
     return 0;
 }
 
-// Create a new node with given data
+
 struct Node* createNode(int data) {
     struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
     if (newNode == NULL) {
@@ -98,7 +94,6 @@ struct Node* createNode(int data) {
     return newNode;
 }
 
-// Insert a node at the end of the list
 void insertEnd(struct Node** head, int data) {
     struct Node* newNode = createNode(data);
     if (*head == NULL) {
@@ -112,7 +107,6 @@ void insertEnd(struct Node** head, int data) {
     }
 }
 
-// Search for an element in the list
 void searchElement(struct Node* head, int element) {
     int index = 0;
     while (head != NULL) {
@@ -126,7 +120,6 @@ void searchElement(struct Node* head, int element) {
     printf("Element %d not found in the list.\n", element);
 }
 
-// Sort the list in ascending order
 void sortList(struct Node** head) {
     if (*head == NULL) return;
 
@@ -148,7 +141,6 @@ void sortList(struct Node** head) {
     }
 }
 
-// Reverse the list
 void reverseList(struct Node** head) {
     struct Node* prev = NULL;
     struct Node* current = *head;
@@ -163,7 +155,6 @@ void reverseList(struct Node** head) {
     *head = prev;
 }
 
-// Print all elements in the list
 void printList(struct Node* head) {
     if (head == NULL) {
         printf("List is empty.\n");
@@ -177,7 +168,6 @@ void printList(struct Node* head) {
     printf("NULL\n");
 }
 
-// Free the entire list
 void freeList(struct Node* head) {
     struct Node* temp;
     while (head != NULL) {

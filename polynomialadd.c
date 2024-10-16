@@ -1,81 +1,89 @@
 #include <stdio.h>
 
-typedef struct Poly{
-  float coeff;
-  int exp;
-}polynomial;
- 
+void printPolynomial(int arr[], int n){
+    for(int i = n-1; i>=0; i--){
+        if(arr[i]==0){
+            continue; 
+        }
+        if(i==0){
+            if(arr[i]<0){
+                printf("%d", arr[i]); 
+            }else{
+                printf("+%d", arr[i]); 
+            }
+            continue; 
+        }
+
+        if(i==n-1){
+            printf("%dx^%d", arr[i], i); 
+            continue; 
+        }
+
+        if(arr[i]<0){
+            printf("%dx^%d", arr[i], i); 
+        }else{
+            printf("+%dx^%d", arr[i], i); 
+        }
+    }
+}
 
 int main(){
-  polynomial a[50],b[50],c[50];
-  int deg1,deg2;
-  int k=0,l=0,m=0;
-  int i;
+    int n1, n2; 
 
-  printf("Enter the max degree of first polynomial:");
-  scanf("%d",&deg1);
-  printf("Enter the max degree of second polynomial:");
-  scanf("%d",&deg2);
+    printf("Degree(highest power) of first polynomial: ");
+    scanf("%d",&n1); 
+    n1++;
 
-  for ( i=0;i<=deg1;i++){
-    printf("Enter the coeficient of x^%d:",i);
-    scanf("%f",&a[i].coeff);
+    printf("Degree(highest power) of second polynomial: ");
+    scanf("%d",&n2); 
+    n2++;
 
-    a[k++].exp=i;
-  }
+    int p1[n1], p2[n2]; 
 
-  for (i=0;i<=deg2;i++){
-    printf("Enter the coeficient of x^%d:",i);
-    scanf("%f",&b[i].coeff);
+    printf("Enter the co-efficients of first polynomial: \nCo-efficient of\n"); 
 
-    b[l++].exp=i;
-  }
+    for(int i = n1-1; i>=0; i--){
+        printf("x%d: ", i); 
+        scanf("%d", &p1[i]); 
+    }
 
-  
-printf("Expression 1=%.1f",a[0].coeff)
-for ( i=1;i<=deg1;i++){
-  printf(" + %.1fx^%d",a[i].coeff,a[i].exp);
+    printf("Enter the co-efficients of second polynomial: \nCo-efficient of\n"); 
 
-}
+    for(int i = n2-1; i>=0; i--){
+        printf("x%d: ", i); 
+        scanf("%d", &p2[i]); 
+    }
 
-printf("Expression 2=%.1f",b[0].coeff)
-for ( i=1;i<=deg1;i++){
-  printf(" + %.1fx^%d",b[i].coeff,b[i].exp);
+    int size = 0; 
+    if(n1>n2){
+        size=n1; 
+    }else{
+        size=n2; 
+    }
 
-}
+    int sum[size]; 
 
+    int k = 0; 
 
-if (deg1>deg2){
-for( i=0;i<=deg2;i++){
-  c[m].coeff=a[i].coeff+b[i].coeff;
-  c[m].exp=a[i].exp; 
-  m++;
-}
-for (i=deg2+1;i<=deg1;i++){
-  c[m].coeff=a[i].coeff;
-  c[m].exp=a[i].exp;
-  m++;
-}
-}
+    while(k<n1&&k<n2){
+        sum[k]=p1[k]+p2[k]; 
+        k++; 
+    }
 
-if (deg1<deg2){
-for( i=0;i<=deg1;i++){
-  c[m].coeff=a[i].coeff+b[i].coeff;
-  c[m].exp=b[i].exp; 
-  m++;
-}
-for (i=deg1+1;i<=deg2;i++){
-  c[m].coeff=a[i].coeff;
-  c[m].exp=a[i].exp;
-  m++;
-}}
+    while(k<n1){
+        sum[k]=p1[k]; 
+        k++; 
+    }
 
-printf("Expression 3=%.1f",c[0].coeff)
-for (i=1;i<m;i++){
-  printf(" + %.1fx^%d",c[i].coeff,c[i].exp);
+    while(k<n2){
+        sum[k]=p2[k]; 
+        k++; 
+    }
 
-}
-
-return 0;
-
-}
+    printf("The sum of "); 
+    printPolynomial(p1, n1); 
+    printf(" and "); 
+    printPolynomial(p2, n2); 
+    printf(" is "); 
+    printPolynomial(sum, size); 
+}.

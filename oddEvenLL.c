@@ -42,38 +42,52 @@ int main() {
         scanf(" %c", &ch); 
     }
 
-  
-    struct Node *temp = head;
-    while (temp != NULL) {
-        printf("%d->", temp->data);
-        temp = temp->next;
+    struct Node*temp=head;
+    struct Node*oddTail=NULL;
+    struct Node*evenTail=NULL;
+    struct Node*oddHead;
+    struct Node*evenHead;
+    while (temp!=NULL){
+        if(temp->data%2!=0){
+            if(oddHead==NULL){
+              oddHead=oddTail=temp;
+            }
+            else{
+                oddTail->next=temp;
+                oddTail=temp;
+            }
+        
+        }
+        else{
+             if(evenHead==NULL){
+              evenHead=evenTail=temp;
+            }
+            else{
+                evenTail->next=temp;
+                evenTail=temp;
+            }
+        }
+    temp=temp->next;
     }
-    printf("END\n");
+    
 
-
-    struct Node *first=head;
-    struct Node *second=head->next;
-    struct Node *node=second;
-   
-    while (second != NULL && second->next != NULL) {
-        first->next = second->next;
-        first = first->next;
-        second->next = first->next;
-        second = even->next;
+    if (oddHead==NULL){
+        head=evenHead;
     }
-
+    else if (oddHead!=NULL && evenHead==NULL){
+        head=oddHead;
     }
-    first->next=node;
-
+    else{
+        oddTail->next=evenHead;
+        evenTail->next=NULL;
+        head=oddHead;
+    }
     struct Node *tmp = head;
     while (tmp != NULL) {
         printf("%d->", tmp->data);
         tmp = tmp->next;
     }
     printf("END\n");
-
-    
-
 
 return 0;
 }
